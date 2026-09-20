@@ -42,7 +42,7 @@ class ConnectionConfigTest extends TestCase
 
     public function testCanCreateConnectionConfigFromDSN(): void
     {
-        $dsn = "amqp://guest:guest@localhost:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0";
+        $dsn = "amqp://guest:guest@rabbitmq:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0";
         $config = ConnectionConfig::fromDsn($dsn);
 
         $this->assertInstanceOf(ConnectionConfig::class, $config);
@@ -59,9 +59,9 @@ class ConnectionConfigTest extends TestCase
 
     public function testCanCreateConnectionFromEnv(): void
     {
-        putenv("RABBITMQ_DSN=amqp://guest:guest@localhost:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0");
+        putenv("RABBITMQ_DSN2=amqp://guest:guest@localhost:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0");
 
-        $config = ConnectionConfig::fromEnv();
+        $config = ConnectionConfig::fromEnv("RABBITMQ_DSN2");
 
         $this->assertInstanceOf(ConnectionConfig::class, $config);
     }
@@ -70,6 +70,6 @@ class ConnectionConfigTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $config = ConnectionConfig::fromEnv("NON_EXISTENT_ENV_VAR");
+        ConnectionConfig::fromEnv("NON_EXISTENT_ENV_VAR");
     }
 }
