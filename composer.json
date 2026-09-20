@@ -1,0 +1,25 @@
+{
+  "name": "lb/rabbitmq",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.5",
+    "ext-json": "*",
+    "ext-pcntl": "*",
+    "ext-sockets": "*",
+    "php-amqplib/php-amqplib": "^3.7"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^8.1",
+    "vlucas/phpdotenv": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lb\\RabbitMq\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}
