@@ -6,10 +6,6 @@ x-php: &php
     - .:/app
   env_file: .env
   depends_on:
-    postgres:
-      condition: service_healthy
-    redis:
-      condition: service_healthy
     rabbitmq:
       condition: service_healthy
   restart: unless-stopped
@@ -36,15 +32,13 @@ services:
   #   docker compose exec app sh
   # Quando um lab precisar de processo de longa duração (consumer, relay),
   # adicione outro serviço com `<<: *php` e `command: ["php", "consumer.php"]`.
-  app:
+  app-rabbit:
     <<: *php
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    container_name: app
+    container_name: app-rabbit
     command: ["sleep", "infinity"]
 
 volumes:
-  postgres-data:
-  redis-data:
   rabbitmq-data:
