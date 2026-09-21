@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connection;
+namespace Lb\RabbitMq\Tests\Unit\Connection;
 
 use Lb\RabbitMq\Connection\ConnectionConfig;
 use PHPUnit\Framework\TestCase;
