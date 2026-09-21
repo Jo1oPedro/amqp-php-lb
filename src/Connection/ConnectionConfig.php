@@ -29,7 +29,7 @@ final readonly class ConnectionConfig
     {
         $parts = parse_url($dsn);
 
-        if($parts === false or ($parts["scheme"] ?? null) !== "amqp") {
+        if($parts === false || ($parts["scheme"] ?? null) !== "amqp") {
             throw new \InvalidArgumentException("Invalid DSN: $dsn");
         }
 
@@ -54,7 +54,7 @@ final readonly class ConnectionConfig
     {
         $dsn = $_ENV[$variable] ?? getenv($variable);
 
-        if ($dsn === false or $dsn === "") {
+        if ($dsn === false || $dsn === "") {
             throw new \InvalidArgumentException("Environment variable $variable not set");
         }
 

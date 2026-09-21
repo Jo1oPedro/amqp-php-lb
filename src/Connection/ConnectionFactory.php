@@ -20,7 +20,7 @@ final class ConnectionFactory
 
     public function connection(): AbstractConnection
     {
-        if($this->amqpConnection === null or !$this->amqpConnection->isConnected()) {
+        if($this->amqpConnection === null || !$this->amqpConnection->isConnected()) {
             $this->amqpConnection = $this->open();
         }
 
