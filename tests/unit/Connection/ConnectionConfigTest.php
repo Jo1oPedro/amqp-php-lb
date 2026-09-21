@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Connection;
 
-use Lb\RabbitMq\connection\ConnectionConfig;
+use Lb\RabbitMq\Connection\ConnectionConfig;
 use PHPUnit\Framework\TestCase;
 
 class ConnectionConfigTest extends TestCase

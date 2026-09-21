@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lb\RabbitMq\connection;
+namespace Lb\RabbitMq\Connection;
 final readonly class ConnectionConfig
 {
     public function __construct(

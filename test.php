@@ -2,8 +2,8 @@
 
 require_once 'vendor/autoload.php';
 
-use Lb\RabbitMq\connection\ConnectionConfig;
-use Lb\RabbitMq\connection\ConnectionFactory;
+use Lb\RabbitMq\Connection\ConnectionConfig;
+use Lb\RabbitMq\Connection\ConnectionFactory;
 
 $connectionConfig = ConnectionConfig::fromEnv();
 

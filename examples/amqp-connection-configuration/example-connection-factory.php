@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require_once __DIR__ . "/vendor/autoload.php";
 
-use Lb\RabbitMq\connection\ConnectionConfig;
-use Lb\RabbitMq\connection\ConnectionFactory;
+use Lb\RabbitMq\Connection\ConnectionConfig;
+use Lb\RabbitMq\Connection\ConnectionFactory;
 use PhpAmqpLib\Message\AMQPMessage;
 
 $amqpConnection = new ConnectionFactory(

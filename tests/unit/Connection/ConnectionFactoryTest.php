@@ -1,10 +1,11 @@
 <?php
 
-use Lb\RabbitMq\connection\ConnectionConfig;
-use Lb\RabbitMq\connection\ConnectionFactory as LbConnectionFactory;
+namespace Connection;
+
+use Lb\RabbitMq\Connection\ConnectionConfig;
+use Lb\RabbitMq\Connection\ConnectionFactory;
 use Lb\RabbitMq\Exception\ConnectionException;
 use PhpAmqpLib\Connection\AbstractConnection;
-
 use PHPUnit\Framework\TestCase;
 
 class ConnectionFactoryTest extends TestCase
@@ -14,7 +15,7 @@ class ConnectionFactoryTest extends TestCase
         $connectionConfig = ConnectionConfig::fromDsn(
             "amqp://guest:guest@rabbitmq:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0"
         );
-        $connectionFactory = new LbConnectionFactory($connectionConfig);
+        $connectionFactory = new ConnectionFactory($connectionConfig);
 
         $connection = $connectionFactory->connection();
 
@@ -26,7 +27,7 @@ class ConnectionFactoryTest extends TestCase
         $connectionConfig = ConnectionConfig::fromDsn(
             "amqp://guest:guest@rabbitmq:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0"
         );
-        $connectionFactory = new LbConnectionFactory($connectionConfig);
+        $connectionFactory = new ConnectionFactory($connectionConfig);
 
         $connection1 = $connectionFactory->connection();
         $connection2 = $connectionFactory->connection();
@@ -39,7 +40,7 @@ class ConnectionFactoryTest extends TestCase
         $connectionConfig = ConnectionConfig::fromDsn(
             "amqp://guest:guest@rabbitmq:5672/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0"
         );
-        $connectionFactory = new LbConnectionFactory($connectionConfig);
+        $connectionFactory = new ConnectionFactory($connectionConfig);
 
         $connection = $connectionFactory->connection();
         $this->assertTrue($connection->isConnected());
@@ -55,7 +56,7 @@ class ConnectionFactoryTest extends TestCase
         $connectionConfig = ConnectionConfig::fromDsn(
             "amqp://guest:guest@rabbitmq:1/%2F?heartbeat=30&connection_timeout=3.0&read_write_timeout=60.0"
         );
-        new LbConnectionFactory($connectionConfig)->connection();
+        new ConnectionFactory($connectionConfig)->connection();
 
     }
 }
