@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lb\RabbitMq\Topology;
 
 /**
@@ -7,7 +9,7 @@ namespace Lb\RabbitMq\Topology;
  * Think of it like a post office or a mail sorting center: producers do not send messages directly to queues;
  * instead, they hand them to an exchange, which reads the message details and decides where the mail needs to go.
  */
-class Exchange
+final readonly class Exchange
 {
     /** @param array<string, mixed> $arguments */
     private function __construct(
