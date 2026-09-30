@@ -3,6 +3,7 @@
 namespace Lb\RabbitMq\Topology;
 
 use Lb\RabbitMq\Connection\ConnectionFactory;
+use Lb\RabbitMq\Exception\TopologyException;
 use PhpAmqpLib\Exception\AMQPProtocolChannelException;
 use PhpAmqpLib\Wire\AMQPTable;
 
