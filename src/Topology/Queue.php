@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Lb\RabbitMq\Topology;
 final readonly class Queue
 {
-    /** @param array<string, mixed> $arguments */
+    /** @param array<string, mixed> $rawArguments */
     private function __construct(
         public string $name,
         public QueueType $type,
         public bool $durable = true,
         public bool $exclusive = false,
         public bool $autoDelete = false,
-        public array $arguments = []
+        public array $rawArguments = []
     ) {
         if(
             $this->type === QueueType::Quorum &&
@@ -40,7 +40,7 @@ final readonly class Queue
 
     public function withArgument(string $key, mixed $value): self
     {
-        return clone($this, ['arguments' => [...$this->arguments, $key => $value]]);
+        return clone($this, ['rawArguments' => [...$this->rawArguments, $key => $value]]);
     }
 
     /**
@@ -97,6 +97,6 @@ final readonly class Queue
 
     public function amqpArguments(): array
     {
-        return [...$this->arguments, "x-queue-type" => $this->type->value];
+        return [...$this->rawArguments, "x-queue-type" => $this->type->value];
     }
 }
