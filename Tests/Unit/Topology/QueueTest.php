@@ -36,8 +36,8 @@ class QueueTest extends TestCase
         $modified = $original->withArgument("x-max-length", 1000);
 
         $this->assertNotSame($original, $modified);
-        $this->assertSame([], $original->arguments);
-        $this->assertSame(["x-max-length" => 1000], $modified->arguments);
+        $this->assertSame([], $original->rawArguments);
+        $this->assertSame(["x-max-length" => 1000], $modified->rawArguments);
     }
 
     public function testMaxLengthAlsoSetsOverflowPolicy(): void
@@ -46,7 +46,7 @@ class QueueTest extends TestCase
 
         $this->assertSame(
             ["x-max-length" => 100, "x-overflow" => "reject-publish"],
-            $queue->arguments,
+            $queue->rawArguments,
         );
     }
 
@@ -54,8 +54,8 @@ class QueueTest extends TestCase
     {
         $queue = Queue::quorum("orders")->deadLetterTo("dlx");
 
-        $this->assertSame(["x-dead-letter-exchange" => "dlx"], $queue->arguments);
-        $this->assertArrayNotHasKey("x-dead-letter-routing-key", $queue->arguments);
+        $this->assertSame(["x-dead-letter-exchange" => "dlx"], $queue->rawArguments);
+        $this->assertArrayNotHasKey("x-dead-letter-routing-key", $queue->rawArguments);
     }
 
     public function testDeliveryLimitIsRejectedForClassicQueues(): void
@@ -79,13 +79,13 @@ class QueueTest extends TestCase
     {
         $queue = Queue::quorum("orders")->expires(60000);
 
-        $this->assertSame(["x-expires" => 60000], $queue->arguments);
+        $this->assertSame(["x-expires" => 60000], $queue->rawArguments);
     }
 
     public function testSingleActiveConsumerSetArgumentsToTrue(): void
     {
         $queue = Queue::classic("orders")->singleActiveConsumer();
 
-        $this->assertSame(["x-single-active-consumer" => true], $queue->arguments);
+        $this->assertSame(["x-single-active-consumer" => true], $queue->rawArguments);
     }
 }
